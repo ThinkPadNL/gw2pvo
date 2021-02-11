@@ -77,7 +77,7 @@ class GoodWeApi:
             result['grid_voltage'] = self.parseValue(inverterData['output_voltage'], 'V')
             result['pv_voltage'] = self.calcPvVoltage(inverterData['d'])
 
-        message = "{status}, {pgrid_w} W now, {eday_kwh} kWh today, {etotal_kwh} kWh all time, {grid_voltage} V grid, {pv_voltage} V PV, Inverter temperature {temperature}°C".format(**result)
+        message = "Inverter status {status}, {pgrid_w} W now, {eday_kwh} kWh today, {etotal_kwh} kWh all time, {grid_voltage} V grid, {pv_voltage} V PV, Inverter temperature {temperature}°C".format(**result)
         if result['status'] == 'Normal' or result['status'] == 'Offline':
             logging.info(message)
         else:
