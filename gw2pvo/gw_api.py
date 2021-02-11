@@ -48,10 +48,10 @@ class GoodWeApi:
             'etotal_kwh' : 0,
             'grid_voltage' : 0,
             'pv_voltage' : 0,
+            'temperature' : 0,
             'latitude' : data['info'].get('latitude'),
-            'longitude' : data['info'].get('longitude'),
-            'temperature' : inverterData['tempperature']
-        }
+            'longitude' : data['info'].get('longitude')
+            }
 
         count = 0
         for inverterData in data['inverter']:
@@ -59,6 +59,7 @@ class GoodWeApi:
             if status == 'Normal':
                 result['status'] = status
                 result['pgrid_w'] += inverterData['out_pac']
+                result['temperature'] += inverterData['tempperature']
                 result['grid_voltage'] += self.parseValue(inverterData['output_voltage'], 'V')
                 result['pv_voltage'] += self.calcPvVoltage(inverterData['d'])
                 count += 1
@@ -76,7 +77,7 @@ class GoodWeApi:
             result['grid_voltage'] = self.parseValue(inverterData['output_voltage'], 'V')
             result['pv_voltage'] = self.calcPvVoltage(inverterData['d'])
 
-        message = "{status}, {pgrid_w} W now, {eday_kwh} kWh today, {etotal_kwh} kWh all time, {grid_voltage} V grid, {pv_voltage} V PV, Inverter {temperature }°C".format(**result)
+        message = "{status}, {pgrid_w} W now, {eday_kwh} kWh today, {etotal_kwh} kWh all time, {grid_voltage} V grid, {pv_voltage} V PV, Inverter temperature {temperature}°C".format(**result)
         if result['status'] == 'Normal' or result['status'] == 'Offline':
             logging.info(message)
         else:
