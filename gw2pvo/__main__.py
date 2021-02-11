@@ -86,9 +86,9 @@ def run_once(settings, city):
 
     #temperature = get_temperature(settings, data['latitude'], data['longitude'])
     temperature = data['temperature']
-    if temperature:
-        logging.info("Current inverter temperature is {:.1f}°C".format(temperature))
-        data['temperature'] = temperature
+    #if temperature:
+        #logging.info("Current inverter temperature is {:.1f}°C".format(temperature))
+        #data['temperature'] = temperature
 
     voltage = data['grid_voltage']
     if settings.pv_voltage:
