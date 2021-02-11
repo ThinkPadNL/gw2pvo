@@ -84,9 +84,10 @@ def run_once(settings, city):
     else:
         last_eday_kwh = eday_kwh
 
-    temperature = get_temperature(settings, data['latitude'], data['longitude'])
+    #temperature = get_temperature(settings, data['latitude'], data['longitude'])
+    temperature = data['temperature']
     if temperature:
-        logging.info("Current local temperature is {:.1f} °C".format(temperature))
+        logging.info("Current inverter temperature is {:.1f} °C".format(temperature))
         data['temperature'] = temperature
 
     voltage = data['grid_voltage']
