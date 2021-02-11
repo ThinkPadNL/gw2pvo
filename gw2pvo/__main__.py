@@ -180,7 +180,7 @@ def run():
     numeric_level = getattr(logging, args.log.upper(), None)
     if not isinstance(numeric_level, int):
         raise ValueError('Invalid log level: %s' % loglevel)
-    logging.basicConfig(format='%(levelname)-8s %(message)s', level=numeric_level)
+    logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s', level=numeric_level)
 
     logging.debug("gw2pvo version " + __version__)
 
