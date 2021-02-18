@@ -165,7 +165,7 @@ class GoodWeApi:
                     'Token': self.token,
                 }
 
-                r = requests.post(self.base_url + url, headers=headers, data=payload, timeout=10)
+                r = requests.post(self.base_url + url, headers=headers, data=payload, timeout=30)
                 r.raise_for_status()
                 data = r.json()
                 logging.debug(data)
@@ -182,7 +182,7 @@ class GoodWeApi:
                         'account': self.account,
                         'pwd': self.password,
                     }
-                    r = requests.post(self.global_url + 'v2/Common/CrossLogin', headers=headers, data=loginPayload, timeout=10)
+                    r = requests.post(self.global_url + 'v2/Common/CrossLogin', headers=headers, data=loginPayload, timeout=30)
                     r.raise_for_status()
                     data = r.json()
                     if 'api' not in data:
